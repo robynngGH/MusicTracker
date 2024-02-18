@@ -1,0 +1,506 @@
+<odoo>
+  <data>
+    <!--Vistas usuario-->
+
+    <record model="ir.ui.view" id="musictracker_usuario_tree">
+      <field name="name">musictracker.usuario.tree</field>
+      <field name="model">musictracker.usuario</field>
+      <field name="arch" type="xml">
+        <tree string="Listado de usuarios" default_order="name">
+          <field name="name"/>
+          <field name="ubicacion"/>
+          <field name="correo"/>
+          <field name="ratings"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="musictracker_usuario_form" model="ir.ui.view">
+      <field name="name">musictracker.usuario.form</field>
+      <field name="model">musictracker.usuario</field>
+      <field name="arch" type="xml">
+        <form string="Formulario de usuario">
+          <sheet>
+            <div>
+              <field name="foto" widget="image" class="oe_avatar"/>
+              <div class="oe_title">
+                <h1>Información del usuario</h1>
+              </div>
+            </div>
+            <group>
+              <field name="name"/>
+              <field name="nombre"/>
+              <field name="apellidos"/>
+              <field name="fecha_nacimiento"/>
+              <field name="correo" widget="email"/>
+              <field name="ubicacion"/>
+              <field name="biografia"/>           
+            </group>
+            <separator string="Ratings"/>
+            <group>
+              <field name="ratings">
+                <tree>
+                  <field name="publicacion"/>
+                  <field name="rating" widget="priority"/>
+                  <field name="fecha_rating"/>
+                </tree>
+              </field>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="musictracker_usuario_kanban" model="ir.ui.view">
+      <field name="name">musictracker.usuario.kanban</field>
+      <field name="model">musictracker.usuario</field>
+      <field name="arch" type="xml">
+        <kanban default_order="name">
+          <templates>
+            <t t-name="kanban-box">
+            <div class="oe_kanban_global_click">
+              <div class="o_kanban_image">
+                <center><field name="foto" widget="image" class="oe_avatar"/>
+                <br/>
+                <b><field name="name"/></b></center>
+              </div>
+              <div class="oe_kanban_details">
+              <center>
+                <div><field name="nombre"/> <field name="apellidos"/></div>
+                <div><field name="correo" widget="email"/></div>
+                <div>Nacimiento: <field name="fecha_nacimiento"/></div>
+                <div><field name="ubicacion"/></div>
+                <div>Nº de ratings: <field name="ratings"/></div>
+              </center>
+              </div>
+            </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
+    <record id="musictracker_usuario_search" model="ir.ui.view">
+      <field name="name">musictracker.usuario.search</field>
+      <field name="model">musictracker.usuario</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name" string="Username"/>
+          <field name="ubicacion" string="Ubicación"/>
+        </search>
+      </field>
+    </record>
+
+    <!--Vistas rating-->
+
+    <record id="musictracker_rating_tree" model="ir.ui.view">
+      <field name="name">musictracker.rating.tree</field>
+      <field name="model">musictracker.rating</field>
+      <field name="arch" type="xml">
+        <tree string="Listado de ratings">
+          <field name="usuario"/>
+          <field name="publicacion"/> 
+          <field name="rating" widget="priority"/>
+          <field name="fecha_rating"/> 
+        </tree>
+      </field>
+    </record>
+
+    <record id="musictracker_rating_form" model="ir.ui.view">
+      <field name="name">musictracker.rating.form</field>
+      <field name="model">musictracker.rating</field>
+      <field name="arch" type="xml">
+        <form string="Formulario de ratings">
+          <sheet>
+            <group>
+              <separator string="Nombre de usuario"/>
+              <field name="usuario"/>
+            </group>
+            <group>
+              <separator string="Publicación"/>
+              <field name="publicacion"/>
+            </group>
+            <group>
+              <separator string="Rating"/>
+              <field name="rating" widget="priority"/>
+              <field name="review"/>
+              <field name="fecha_rating"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!--Vistas artista-->
+
+    <record id="musictracker_artista_tree" model="ir.ui.view">
+      <field name="name">musictracker.artista.tree</field>
+      <field name="model">musictracker.artista</field>
+      <field name="arch" type="xml">
+        <tree string="Listado de artistas" default_order="name">
+          <field name="name"/>
+          <field name="ubicacion"/>
+          <field name="generos" widget="many2many_tags"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="musictracker_artista_form" model="ir.ui.view">
+      <field name="name">musictracker.artista.form</field>
+      <field name="model">musictracker.artista</field>
+      <field name="arch" type="xml">
+        <form string="Formulario de artista">
+          <sheet>
+            <div>
+              <field name="foto" widget="image" class="oe_avatar"/>
+              <div class="oe_title">
+                <h1>Información del artista</h1>
+              </div>
+            </div>
+            <group>
+              <field name="name"/>
+              <field name="ubicacion"/>
+              <field name="fecha_formacion"/>
+              <field name="fecha_separacion"/>
+              <field name="generos" widget="many2many_tags"/>           
+            </group>
+            <separator string="Miembros y publicaciones"/>
+            <group>
+              <field name="miembros">
+                <tree>
+                  <field name="name"/>
+                  <field name="instrumento"/>
+                </tree>
+              </field>
+              <field name="publicaciones">
+                <tree default_order="rating desc">
+                  <field name="name"/>
+                  <field name="tipo"/>
+                  <field name="rating"/>
+                </tree>
+              </field>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="musictracker_artista_kanban" model="ir.ui.view">
+      <field name="name">musictracker.artista.kanban</field>
+      <field name="model">musictracker.artista</field>
+      <field name="arch" type="xml">
+        <kanban default_order="name">
+          <templates>
+            <t t-name="kanban-box">
+            <div class="oe_kanban_global_click">
+              <div t-attf-class="oe_kanban_content">
+              <center>
+                <field name="foto" widget="image" class="oe_avatar"/>
+                <br/><br/>
+                <font size="5"><b><i><field name="name"/></i></b></font>
+                <br/>
+                <br/>
+                Ubicación: <field name="ubicacion"/>
+                <br/>
+                Fecha de actividad: <field name="fecha_formacion"/> - <field name="fecha_separacion"/>
+                <br/><span class="oe_separator">_______________________</span><br/>
+                Géneros: <field name="generos" widget="many2many_tags"/>
+              </center>
+              </div>
+            </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
+    <record id="musictracker_artista_search" model="ir.ui.view">
+      <field name="name">musictracker.artista.search</field>
+      <field name="model">musictracker.artista</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name" string="Nombre"/>
+          <field name="ubicacion" string="Ubicación"/>
+          <field name="ano_formacion" string="Año de formación"/>
+          <field name="generos" string="Géneros"/>
+        </search>
+      </field>
+    </record>
+
+    <!--Vistas miembro-->
+
+    <record id="musictracker_miembro_tree" model="ir.ui.view">
+      <field name="name">musictracker.miembro.tree</field>
+      <field name="model">musictracker.miembro</field>
+      <field name="arch" type="xml">
+        <tree string="Listado de miembros">
+          <field name="name"/>
+          <field name="artista"/> 
+          <field name="instrumento"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="musictracker_miembro_form" model="ir.ui.view">
+      <field name="name">musictracker.miembro.form</field>
+      <field name="model">musictracker.miembro</field>
+      <field name="arch" type="xml">
+        <form string="Formulario de miembros">
+          <sheet>
+            <group>
+              <separator string="Nombre del miembro"/>
+              <field name="name"/>
+              <field name="nombre"/>
+              <field name="apellidos"/>
+            </group>
+            <group>
+              <separator string="Fecha de actividad"/>
+              <field name="fecha_inicio"/>
+              <field name="fecha_fin"/>
+            </group>
+            <group>
+              <separator string="Artista"/>
+              <field name="artista"/>
+              <field name="instrumento"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!--Vistas publicacion-->
+
+    <record id="musictracker_publicacion_tree" model="ir.ui.view">
+      <field name="name">musictracker.publicacion.tree</field>
+      <field name="model">musictracker.publicacion</field>
+      <field name="arch" type="xml">
+        <tree string="Listado de publicaciones" default_order="rating desc">
+          <field name="name"/>
+          <field name="artista"/>
+          <field name="tipo"/>
+          <field name="rating"/>
+          <field name="generos" widget="many2many_tags"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="musictracker_publicacion_form" model="ir.ui.view">
+      <field name="name">musictracker.publicacion.form</field>
+      <field name="model">musictracker.publicacion</field>
+      <field name="arch" type="xml">
+        <form string="Formulario de publicación">
+          <sheet>
+            <div>
+              <field name="foto" widget="image" class="oe_avatar"/>
+              <div class="oe_title">
+                <h1>Información de la publicación</h1>
+              </div>
+            </div>
+            <group>
+              <field name="name"/>
+              <field name="artista"/>
+              <field name="tipo"/>
+              <field name="fecha_publicacion"/>         
+            </group>
+            <separator string="Etiquetas"/>
+            <group>
+              <field name="generos" widget="many2many_tags"/>
+              <field name="tags" widget="many2many_tags"/>
+              <field name="rating"/>
+            </group>
+            <separator string="Canciones"/>
+            <group>
+              <field name="canciones">
+                <tree>
+                  <field name="name"/>
+                </tree>
+              </field>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record id="musictracker_publicacion_kanban" model="ir.ui.view">
+      <field name="name">musictracker.publicacion.kanban</field>
+      <field name="model">musictracker.publicacion</field>
+      <field name="arch" type="xml">
+        <kanban default_group_by="artista" default_order="rating desc">
+          <templates>
+            <t t-name="kanban-box">
+            <div class="oe_kanban_global_click">
+            <!--Imagen a la izq-->
+              <div class="o_kanban_image">
+                <field name="foto" widget="image" class="oe_avatar"/>
+              </div>
+              <div class="oe_kanban_details">
+              <center>
+                <div><font size="3"><b><field name="name"/></b></font> (<field name="tipo"/>)</div>
+                <br/>
+                <div>Géneros: <field name="generos" widget="many2many_tags"/></div>
+                <font size="1"><span class="oe_separator">_______________________</span></font>
+                <div>Publicación: <field name="fecha_publicacion"/></div>
+                <br/>
+                <div>Rating: <b><font size="3"><field name="rating"/></font></b> / 10</div>
+              </center>
+              </div>
+            </div>
+            </t>
+          </templates>
+        </kanban>
+      </field>
+    </record>
+
+    <record id="musictracker_publicacion_calendar" model="ir.ui.view">
+      <field name="name">musictracker.publicacion.calendar</field>
+      <field name="model">musictracker.publicacion</field>
+      <field name="arch" type="xml">
+        <calendar string="Calendario de publicaciones" date_start="fecha_publicacion" mode="year" color="name">
+          <field name="fecha_publicacion"/>
+          <field name="name"/>
+        </calendar>
+      </field>
+    </record>
+
+    <record id="musictracker_publicacion_search" model="ir.ui.view">
+      <field name="name">musictracker.publicacion.search</field>
+      <field name="model">musictracker.publicacion</field>
+      <field name="arch" type="xml">
+        <search>
+          <field name="name" string="Nombre"/>
+          <field name="artista" string="Artista"/>
+          <field name="ano_publicacion" string="Año de salida"/>
+          <field name="generos" string="Géneros"/>
+          <field name="tags" string="Tags"/>
+          <!--Filtros por tipo de publicación-->
+          <filter string="Álbum" name="album" domain="[('tipo', '=', 'a')]"/>
+          <filter string="EP / Mini-álbum" name="ep" domain="[('tipo', '=', 'e')]"/>
+          <filter string="Compilación" name="compilacion" domain="[('tipo', '=', 'c')]"/>
+          <filter string="Single" name="single" domain="[('tipo', '=', 's')]"/>
+          <filter string="Mixtape" name="mixtape" domain="[('tipo', '=', 'm')]"/>
+          <filter string="DJ Mix" name="dj_mix" domain="[('tipo', '=', 'd')]"/>
+          <filter string="Bootleg / No autorizado" name="bootleg" domain="[('tipo', '=', 'b')]"/>
+          <filter string="Álbum remix" name="remix" domain="[('tipo', '=', 'r')]"/>
+        </search>
+      </field>
+    </record>
+
+    <!--Vistas cancion-->
+
+    <record id="musictracker_cancion_tree" model="ir.ui.view">
+      <field name="name">musictracker.cancion.tree</field>
+      <field name="model">musictracker.cancion</field>
+      <field name="arch" type="xml">
+        <tree string="Listado de canciones">
+          <field name="name"/>
+          <field name="artista"/>
+          <field name="publicacion"/>
+        </tree>
+      </field>
+    </record>
+
+    <record id="musictracker_cancion_form" model="ir.ui.view">
+      <field name="name">musictracker.cancion.form</field>
+      <field name="model">musictracker.cancion</field>
+      <field name="arch" type="xml">
+        <form string="Formulario de canciones">
+          <sheet>
+            <group>
+              <separator string="Canción"/>
+              <field name="artista"/>
+              <field name="name"/>
+              <field name="publicacion"/>
+            </group>
+          </sheet>
+        </form>
+      </field>
+    </record>
+
+    <!--Acciones de ventana-->
+    <record id="musictracker_usuario_action_window" model="ir.actions.act_window">
+      <field name="name">Usuarios</field>
+      <field name="res_model">musictracker.usuario</field>
+      <field name="view_mode">tree,form,kanban,search</field>
+    </record>
+
+    <record id="musictracker_rating_action_window" model="ir.actions.act_window">
+      <field name="name">Ratings</field>
+      <field name="res_model">musictracker.rating</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="musictracker_artista_action_window" model="ir.actions.act_window">
+      <field name="name">Artistas</field>
+      <field name="res_model">musictracker.artista</field>
+      <field name="view_mode">tree,form,kanban,search</field>
+    </record>
+
+    <record id="musictracker_miembro_action_window" model="ir.actions.act_window">
+      <field name="name">Miembros</field>
+      <field name="res_model">musictracker.miembro</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="musictracker_publicacion_action_window" model="ir.actions.act_window">
+      <field name="name">Publicaciones</field>
+      <field name="res_model">musictracker.publicacion</field>
+      <field name="view_mode">tree,form,kanban,calendar,search</field>
+    </record>
+
+    <record id="musictracker_cancion_action_window" model="ir.actions.act_window">
+      <field name="name">Canciones</field>
+      <field name="res_model">musictracker.cancion</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <!--Menús-->
+
+    <menuitem
+      id="musictracker_menu_root"
+      name="MusicTracker"
+      groups="musictracker_administrador"
+      />
+    <menuitem
+      id="musictracker_usuario_menu"
+      name="Usuarios"
+      parent="musictracker_menu_root"
+      action="musictracker_usuario_action_window"
+      groups="musictracker_administrador"
+      />
+    <menuitem
+      id="musictracker_rating_menu"
+      name="Ratings"
+      parent="musictracker_menu_root"
+      action="musictracker_rating_action_window"
+      groups="musictracker_administrador"
+      />
+    <menuitem
+      id="musictracker_artista_menu"
+      name="Artistas"
+      parent="musictracker_menu_root"
+      action="musictracker_artista_action_window"
+      groups="musictracker_administrador"
+      />
+    <menuitem
+      id="musictracker_miembro_menu"
+      name="Miembros"
+      parent="musictracker_menu_root"
+      action="musictracker_miembro_action_window"
+      groups="musictracker_administrador"
+      />
+    <menuitem
+      id="musictracker_publicacion_menu"
+      name="Publicaciones"
+      parent="musictracker_menu_root"
+      action="musictracker_publicacion_action_window"
+      groups="musictracker_administrador"
+      />
+    <menuitem
+      id="musictracker_cancion_menu"
+      name="Canciones"
+      parent="musictracker_menu_root"
+      action="musictracker_cancion_action_window"
+      groups="musictracker_administrador"
+      />
+  </data>
+</odoo>

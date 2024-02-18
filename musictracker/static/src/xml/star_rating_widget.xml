@@ -1,0 +1,5 @@
+<template id="StarRatingWidget" xml:space="preserve">
+        <div class="o_star_rating_widget">
+            <i t-foreach="_.range(widget.maxValue)" t-as="index" t-key="index" class="o_star_rating_widget_star"></i>
+        </div>
+</template>

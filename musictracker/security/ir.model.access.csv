@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+usuario_administrador,usuario administrador,model_musictracker_usuario,musictracker_administrador,1,1,1,1
+rating_administrador,rating administrador,model_musictracker_rating,musictracker_administrador,1,1,1,1
+artista_administrador,artista administrador,model_musictracker_artista,musictracker_administrador,1,1,1,1
+miembro_administrador,miembro administrador,model_musictracker_miembro,musictracker_administrador,1,1,1,1
+publicacion_administrador,publicacion administrador,model_musictracker_publicacion,musictracker_administrador,1,1,1,1
+cancion_administrador,cancion administrador,model_musictracker_cancion,musictracker_administrador,1,1,1,1
+genero_administrador,genero administrador,model_musictracker_genero,musictracker_administrador,1,1,1,1
+tag_administrador,tag administrador,model_musictracker_tag,musictracker_administrador,1,1,1,1
