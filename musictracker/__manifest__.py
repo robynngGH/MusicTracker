@@ -21,13 +21,17 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['web', 'base'],
+    'depends': ['web', 'base', 'mail'],
 
     # always loaded
     'data': [
         'security/security.xml',
         'security/ir.model.access.csv',
         'views/views.xml',
+        'reports/report_ratings_usuario.xml',
+        'reports/report_miembros_artista.xml',
+        'reports/report_publicaciones_artista.xml',
+        'reports/report_canciones_publicacion.xml',
     ],
     'qweb': [
         'static/src/xml/star_rating_widget.xml',

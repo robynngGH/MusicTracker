@@ -1,0 +1,53 @@
+<odoo>
+    <data>
+        <record id="musictracker_report_canciones_publicacion" model="ir.actions.report">
+            <field name="name">Report de publicación con canciones</field>
+            <field name="model">musictracker.publicacion</field>
+            <field name="report_type">qweb-html</field>
+            <field name="report_name">musictracker.report_canciones_publicacion</field>
+            <field name="report_file">musictracker.report_canciones_publicacion</field>
+            <field name="binding_model_id" ref="model_musictracker_publicacion"/>
+            <field name="binding_type">report</field>
+        </record>
+        <template id="report_canciones_publicacion">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <center><h3>Canciones de la publicación</h3></center>
+                    <table class="table">
+                        <t t-foreach="docs" t-as="publicacion">
+                            <t t-set="total_canciones" t-value="0"/>
+                            <thead>
+                                <tr style="background-color:#FFC201">
+                                    <td><center><b><span t-field="publicacion.artista.name"/></b></center></td>
+                                    <td><center><b><span t-field="publicacion.name"/></b></center></td>
+                                </tr>
+                            </thead>
+                        </t>
+                            <tbody>
+                                <tr style="background-color:#ffdb59">
+                                    <th>#</th>
+                                    <th>Canciones</th>
+                                </tr>
+                                <t t-foreach="publicacion.canciones" t-as="cancion">
+                                    <t t-set="total_canciones" t-value="total_canciones+1"/>
+                                    <tr>
+                                        <td>
+                                            <span t-esc="total_canciones"/>
+                                        </td>
+                                        <td style="background-color:#f0f0f0">
+                                            <b><span t-field="cancion.name"/></b>
+                                        </td>
+                                    </tr>
+                                </t> 
+                                <tr style="background-color:#FF7F00">
+                                    <td><b>Total de canciones:</b></td>
+                                    <td><b><span t-esc="total_canciones"/></b></td>
+                                </tr>                                                                       
+                            </tbody>
+                        
+                    </table>
+                </t>
+            </t>
+        </template>  
+    </data>
+</odoo>

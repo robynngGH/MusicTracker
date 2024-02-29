@@ -20,6 +20,11 @@
       <field name="model">musictracker.usuario</field>
       <field name="arch" type="xml">
         <form string="Formulario de usuario">
+          <xpath expr="/form/*" position="before">
+            <header>
+              <button name="enviar_correo" type="object" class="oe_highlight" string="Enviar correo" confirm="¿Desea enviar el correo?"/>
+            </header>
+          </xpath>
           <sheet>
             <div>
               <field name="foto" widget="image" class="oe_avatar"/>
@@ -269,7 +274,7 @@
     </record>
 
     <!--Vistas publicacion-->
-
+    
     <record id="musictracker_publicacion_tree" model="ir.ui.view">
       <field name="name">musictracker.publicacion.tree</field>
       <field name="model">musictracker.publicacion</field>
@@ -283,7 +288,7 @@
         </tree>
       </field>
     </record>
-
+    
     <record id="musictracker_publicacion_form" model="ir.ui.view">
       <field name="name">musictracker.publicacion.form</field>
       <field name="model">musictracker.publicacion</field>
@@ -300,13 +305,14 @@
               <field name="name"/>
               <field name="artista"/>
               <field name="tipo"/>
-              <field name="fecha_publicacion"/>         
+              <field name="fecha_publicacion"/>
             </group>
             <separator string="Etiquetas"/>
             <group>
               <field name="generos" widget="many2many_tags"/>
               <field name="tags" widget="many2many_tags"/>
               <field name="rating"/>
+              <field name="url_spotify"/>
             </group>
             <separator string="Canciones"/>
             <group>
@@ -320,7 +326,7 @@
         </form>
       </field>
     </record>
-
+    
     <record id="musictracker_publicacion_kanban" model="ir.ui.view">
       <field name="name">musictracker.publicacion.kanban</field>
       <field name="model">musictracker.publicacion</field>
@@ -335,15 +341,14 @@
               </div>
               <div class="oe_kanban_details">
               <center>
-                <div><font size="3"><b><field name="name"/></b></font> (<field name="tipo"/>)</div>
+                <div><font size="3"><b><field name="name"/></b></font> (<field name="tipo"/>) <field name="fecha_publicacion"/></div>
                 <br/>
                 <div>Géneros: <field name="generos" widget="many2many_tags"/></div>
-                <font size="1"><span class="oe_separator">_______________________</span></font>
-                <div>Publicación: <field name="fecha_publicacion"/></div>
-                <br/>
                 <div>Rating: <b><font size="3"><field name="rating"/></font></b> / 10</div>
               </center>
               </div>
+              <br/>
+              <div><field name="url_spotify" widget="html"/></div>
             </div>
             </t>
           </templates>
@@ -361,7 +366,7 @@
         </calendar>
       </field>
     </record>
-
+    
     <record id="musictracker_publicacion_search" model="ir.ui.view">
       <field name="name">musictracker.publicacion.search</field>
       <field name="model">musictracker.publicacion</field>
@@ -440,7 +445,7 @@
       <field name="res_model">musictracker.miembro</field>
       <field name="view_mode">tree,form</field>
     </record>
-
+    
     <record id="musictracker_publicacion_action_window" model="ir.actions.act_window">
       <field name="name">Publicaciones</field>
       <field name="res_model">musictracker.publicacion</field>
@@ -458,49 +463,49 @@
     <menuitem
       id="musictracker_menu_root"
       name="MusicTracker"
-      groups="musictracker_administrador"
+      groups="musictracker_administrador,musictracker_usuario"
       />
     <menuitem
       id="musictracker_usuario_menu"
       name="Usuarios"
       parent="musictracker_menu_root"
       action="musictracker_usuario_action_window"
-      groups="musictracker_administrador"
+      groups="musictracker_administrador,musictracker_usuario"
       />
     <menuitem
       id="musictracker_rating_menu"
       name="Ratings"
       parent="musictracker_menu_root"
       action="musictracker_rating_action_window"
-      groups="musictracker_administrador"
+      groups="musictracker_administrador,musictracker_usuario"
       />
     <menuitem
       id="musictracker_artista_menu"
       name="Artistas"
       parent="musictracker_menu_root"
       action="musictracker_artista_action_window"
-      groups="musictracker_administrador"
+      groups="musictracker_administrador,musictracker_usuario"
       />
     <menuitem
       id="musictracker_miembro_menu"
       name="Miembros"
       parent="musictracker_menu_root"
       action="musictracker_miembro_action_window"
-      groups="musictracker_administrador"
+      groups="musictracker_administrador,musictracker_usuario"
       />
     <menuitem
       id="musictracker_publicacion_menu"
       name="Publicaciones"
       parent="musictracker_menu_root"
       action="musictracker_publicacion_action_window"
-      groups="musictracker_administrador"
+      groups="musictracker_administrador,musictracker_usuario"
       />
     <menuitem
       id="musictracker_cancion_menu"
       name="Canciones"
       parent="musictracker_menu_root"
       action="musictracker_cancion_action_window"
-      groups="musictracker_administrador"
+      groups="musictracker_administrador,musictracker_usuario"
       />
   </data>
 </odoo>

@@ -3,5 +3,8 @@
         <record id="musictracker_administrador" model="res.groups">
             <field name="name">MusicTracker / Administrador</field>
         </record>
+        <record id="musictracker_usuario" model="res.groups">
+            <field name="name">MusicTracker / Usuario</field>
+        </record>
     </data>
 </odoo>

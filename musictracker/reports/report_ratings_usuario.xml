@@ -1,0 +1,126 @@
+<odoo>
+    <data>
+        <record id="musictracker_report_ratings_usuario" model="ir.actions.report">
+            <field name="name">Report de ratings del usuario</field>
+            <field name="model">musictracker.usuario</field>
+            <field name="report_type">qweb-html</field>
+            <field name="report_name">musictracker.report_ratings_usuario</field>
+            <field name="report_file">musictracker.report_ratings_usuario</field>
+            <field name="binding_model_id" ref="model_musictracker_usuario"/>
+            <field name="binding_type">report</field>
+        </record>
+        <template id="report_ratings_usuario">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <center><h3>Ratings del usuario</h3></center>
+                    <table class="table">
+                        <t t-foreach="docs" t-as="usuario">
+                            <t t-set="rating10" t-value="0"/> <!--variables contador para cada número de estrellas-->
+                            <t t-set="rating9" t-value="0"/>
+                            <t t-set="rating8" t-value="0"/>
+                            <t t-set="rating7" t-value="0"/>
+                            <t t-set="rating6" t-value="0"/>
+                            <t t-set="rating5" t-value="0"/>
+                            <t t-set="rating4" t-value="0"/>
+                            <t t-set="rating3" t-value="0"/>
+                            <t t-set="rating2" t-value="0"/>
+                            <t t-set="rating1" t-value="0"/>
+                            <t t-set="total_ratings" t-value="0"/>
+                            <thead>
+                                <tr style="background-color:#FFC201">
+                                    <th style="width: 15%;"><center>USUARIO</center></th>
+                                    <td><center><b><span t-field="usuario.name"/></b></center></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="background-color:#ffdb59">
+                                    <th>Valoración</th>
+                                    <th>Nº de veces</th>
+                                </tr>
+                                <t t-foreach="usuario.ratings" t-as="rating">
+                                    <t t-set="total_ratings" t-value="total_ratings+1"/>
+                                    <t t-if="rating.rating == '10'">
+                                        <t t-set="rating10" t-value="rating10+1"/>
+                                    </t>
+                                    <t t-if="rating.rating == '9'">
+                                        <t t-set="rating9" t-value="rating9+1"/>
+                                    </t>
+                                    <t t-if="rating.rating == '8'">
+                                        <t t-set="rating8" t-value="rating8+1"/>
+                                    </t>
+                                    <t t-if="rating.rating == '7'">
+                                        <t t-set="rating7" t-value="rating7+1"/>
+                                    </t>
+                                    <t t-if="rating.rating == '6'">
+                                        <t t-set="rating6" t-value="rating6+1"/>
+                                    </t>
+                                    <t t-if="rating.rating == '5'">
+                                        <t t-set="rating5" t-value="rating5+1"/>
+                                    </t>
+                                    <t t-if="rating.rating == '4'">
+                                        <t t-set="rating4" t-value="rating4+1"/>
+                                    </t>
+                                    <t t-if="rating.rating == '3'">
+                                        <t t-set="rating3" t-value="rating3+1"/>
+                                    </t>
+                                    <t t-if="rating.rating == '2'">
+                                        <t t-set="rating2" t-value="rating2+1"/>
+                                    </t>
+                                    <t t-if="rating.rating == '1'">
+                                        <t t-set="rating1" t-value="rating1+1"/>
+                                    </t>
+                                </t>
+                                    <tr>
+                                        <th style="background-color:#c8ff9d">10★</th>
+                                        <td><b><span t-esc="rating10"/></b></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background-color:#d2ff9e">9★</td>
+                                        <td><b><span t-esc="rating9"/></b></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background-color:#defe9f">8★</td>
+                                        <td><b><span t-esc="rating8"/></b></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background-color:#ebfea0">7★</td>
+                                        <td><b><span t-esc="rating7"/></b></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background-color:#f5fda1">6★</td>
+                                        <td><b><span t-esc="rating6"/></b></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background-color:#fffda2">5★</td>
+                                        <td><b><span t-esc="rating5"/></b></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background-color:#ffeca4">4★</td>
+                                        <td><b><span t-esc="rating4"/></b></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background-color:#ffd4a6">3★</td>
+                                        <td><b><span t-esc="rating3"/></b></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background-color:#ffbea9">2★</td>
+                                        <td><b><span t-esc="rating2"/></b></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="background-color:#ffabab">1★</td>
+                                        <td><b><span t-esc="rating1"/></b></td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td style="background-color:#FF7F00">
+                                            <center>Total de ratings:      <b><span t-esc="total_ratings"/></b></center>
+                                        </td>
+                                    </tr>
+                            </tbody>
+                            </t>
+                        </table>
+                </t>
+            </t>
+        </template>  
+    </data>
+</odoo>

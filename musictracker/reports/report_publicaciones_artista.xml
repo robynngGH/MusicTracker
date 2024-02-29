@@ -1,0 +1,65 @@
+<odoo>
+    <data>
+        <record id="musictracker_report_publicaciones_artista" model="ir.actions.report">
+            <field name="name">Report de publicaciones del artista</field>
+            <field name="model">musictracker.artista</field>
+            <field name="report_type">qweb-html</field>
+            <field name="report_name">musictracker.report_publicaciones_artista</field>
+            <field name="report_file">musictracker.report_publicaciones_artista</field>
+            <field name="binding_model_id" ref="model_musictracker_artista"/>
+            <field name="binding_type">report</field>
+        </record>
+        <template id="report_publicaciones_artista">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <center><h3>Publicaciones del artista</h3></center>
+                    <table class="table">
+                        <t t-foreach="docs" t-as="artista">
+                            <t t-set="total_publicaciones" t-value="0"/>
+                            <thead>
+                                <tr style="background-color:#FFC201">
+                                    <td><center>ARTISTA:</center></td>
+                                    <td><center><b><span t-field="artista.name"/></b></center></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </thead>
+                        </t>
+                            <tbody>
+                                <tr style="background-color:#ffdb59">
+                                    <th>Nombre</th>
+                                    <th>Rating</th>
+                                    <th>Tipo</th>
+                                    <th>Fecha de salida</th>
+                                </tr>
+                                <t t-foreach="artista.publicaciones" t-as="publicacion">
+                                    <t t-set="total_publicaciones" t-value="total_publicaciones+1"/>
+                                    <tr>
+                                        <td>
+                                            <span t-field="publicacion.name"/>
+                                        </td>
+                                        <td style="background-color:#c8ff9d">
+                                            <b><span t-field="publicacion.rating"/></b>
+                                        </td>
+                                        <td>
+                                            <span t-field="publicacion.tipo"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="publicacion.fecha_publicacion"/>
+                                        </td>
+                                    </tr>
+                                </t> 
+                                <tr style="background-color:#FF7F00">
+                                    <td><b>Total de publicaciones:</b></td>
+                                    <td><b><span t-esc="total_publicaciones"/></b></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>                                                                       
+                            </tbody>
+                        
+                    </table>
+                </t>
+            </t>
+        </template>  
+    </data>
+</odoo>

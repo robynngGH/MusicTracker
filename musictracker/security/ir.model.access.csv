@@ -7,3 +7,12 @@ publicacion_administrador,publicacion administrador,model_musictracker_publicaci
 cancion_administrador,cancion administrador,model_musictracker_cancion,musictracker_administrador,1,1,1,1
 genero_administrador,genero administrador,model_musictracker_genero,musictracker_administrador,1,1,1,1
 tag_administrador,tag administrador,model_musictracker_tag,musictracker_administrador,1,1,1,1
+
+usuario_usuario,usuario usuario,model_musictracker_usuario,musictracker_usuario,1,0,0,0
+rating_usuario,rating usuario,model_musictracker_rating,musictracker_usuario,1,0,0,0
+artista_usuario,artista usuario,model_musictracker_artista,musictracker_usuario,1,0,0,0
+miembro_usuario,miembro usuario,model_musictracker_miembro,musictracker_usuario,1,0,0,0
+publicacion_usuario,publicacion usuario,model_musictracker_publicacion,musictracker_usuario,1,0,0,0
+cancion_usuario,cancion usuario,model_musictracker_cancion,musictracker_usuario,1,0,0,0
+genero_usuario,genero usuario,model_musictracker_genero,musictracker_usuario,1,0,0,0
+tag_usuario,tag usuario,model_musictracker_tag,musictracker_usuario,1,0,0,0

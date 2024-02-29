@@ -3,6 +3,9 @@
 from odoo import models, fields, api
 from dateutil.relativedelta import *
 from datetime import date
+import logging
+
+_logger = logging.getLogger(__name__)
 
 class usuario(models.Model):
     _name = 'musictracker.usuario'
@@ -19,13 +22,27 @@ class usuario(models.Model):
     # relaciones
     ratings = fields.One2many('musictracker.rating','usuario',string='Ratings')
 
-    # @api.depends('value')
-    # def _value_pc(self):
-    #     for record in self:
-    #         record.value2 = float(record.value) / 100
-
     # restricciones
-    _sql_constraints=[('name_unique','unique(name)','El nombre de usuario ya existe')]
+    _sql_constraints=[('name_unique','unique(name)','El nombre de usuario ya existe')]    
+
+    def enviar_correo(self):
+        mail_mail = self.env['mail.mail']
+        correo = self.correo
+        asunto = "Envío de correo MusicTracker"
+        cuerpo = """
+                    <h1>Buenos días</h1>
+
+                    <p>Desde MusicTracker, queremos agradecer tu colaboración estableciando valoraciones de tus álbumes favoritos</p>
+
+                    <p>Un cordial saludo,
+                    <b>MusicTracker</b></p>
+                """
+        mail_id = mail_mail.create({
+            'email_to': correo,
+            'subject': asunto,
+            'body_html': '<pre>%s</pre>' % cuerpo, 
+        })
+        mail_mail.send([mail_id])
 
 
 class rating(models.Model):
@@ -60,6 +77,7 @@ class publicacion(models.Model):
     ano_publicacion = fields.Char('Año de publicación',compute='_compute_ano_publicacion',store=True)
     tipo = fields.Selection(string='Tipo',selection=[('a','Álbum'),('c','Compilación'),('e','EP / Mini-álbum'),('s','Single'),('m','Mixtape'),('d','DJ Mix'),('b','Bootleg / No autorizado'),('r','Álbum remix')],default='a')
     foto = fields.Binary()
+    url_spotify = fields.Char(string='Código embed Spotify')
     #el rating recibirá el valor medio de todos los ratings de la publicación
     rating = fields.Float(string='Rating',compute='_compute_media_rating',store=True)
     # relaciones

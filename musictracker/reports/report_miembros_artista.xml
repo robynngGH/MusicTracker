@@ -1,0 +1,65 @@
+<odoo>
+    <data>
+        <record id="musictracker_report_miembros_artista" model="ir.actions.report">
+            <field name="name">Report de miembros del grupo</field>
+            <field name="model">musictracker.artista</field>
+            <field name="report_type">qweb-html</field>
+            <field name="report_name">musictracker.report_miembros_artista</field>
+            <field name="report_file">musictracker.report_miembros_artista</field>
+            <field name="binding_model_id" ref="model_musictracker_artista"/>
+            <field name="binding_type">report</field>
+        </record>
+        <template id="report_miembros_artista">
+            <t t-call="web.html_container">
+                <t t-call="web.external_layout">
+                    <center><h3>Miembros del grupo</h3></center>
+                    <table class="table">
+                        <t t-foreach="docs" t-as="artista">
+                            <t t-set="total_miembros" t-value="0"/>
+                            <thead>
+                                <tr style="background-color:#FFC201">
+                                    <td><center>ARTISTA:</center></td>
+                                    <td><center><b><span t-field="artista.name"/></b></center></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </thead>
+                        </t>
+                            <tbody>
+                                <tr style="background-color:#ffdb59">
+                                    <th>Nombre artístico</th>
+                                    <th>Nombre real</th>
+                                    <th>Intrumento/s</th>
+                                    <th>Fecha de actividad</th>
+                                </tr>
+                                <t t-foreach="artista.miembros" t-as="miembro">
+                                    <t t-set="total_miembros" t-value="total_miembros+1"/>
+                                    <tr>
+                                        <td>
+                                            <span t-field="miembro.name"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="miembro.nombre"/> <span t-field="miembro.apellidos"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="miembro.instrumento"/>
+                                        </td>
+                                        <td>
+                                            <span t-field="miembro.fecha_inicio"/> - <span t-field="miembro.fecha_fin"/>
+                                        </td>
+                                    </tr>
+                                </t> 
+                                <tr style="background-color:#FF7F00">
+                                    <td><b>Total de miembros:</b></td>
+                                    <td><b><span t-esc="total_miembros"/></b></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>                                                                       
+                            </tbody>
+                        
+                    </table>
+                </t>
+            </t>
+        </template>  
+    </data>
+</odoo>
