@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    <!--Usuarios-->
+        <record id="usuario1" model="musictracker.usuario">
+            <field name="name">music_enjoyer1</field>
+            <field name="nombre">Kevin</field>
+            <field name="apellidos">López</field>
+            <field name="fecha_nacimiento">2000-06-15</field>
+            <field name="correo">kevinlopez@gmail.com</field>
+            <field name="ubicacion">Adelaide, Australia</field>
+            <field name="biografia">I LUV MUSIC!!!</field>
+            <field name="foto" type="base64" file="musictracker/static/dummy_images/kevin.jpg"/>
+        </record>
+        <record id="usuario2" model="musictracker.usuario">
+            <field name="name">music_enjoyer2</field>
+            <field name="nombre">Bretta</field>
+            <field name="apellidos">Gordon</field>
+            <field name="fecha_nacimiento">1993-11-25</field>
+            <field name="correo">brettagordon@gmail.com</field>
+            <field name="ubicacion">Alicante, España</field>
+            <field name="biografia">Soy muy tímida pero me encanta hablar de mis álbumes favoritos</field>
+            <field name="foto" type="base64" file="musictracker/static/dummy_images/bretta.png"/>
+        </record>
+
+        <!--Géneros-->
+        <record id="genero1" model="musictracker.genero">
+            <field name="name">Post-Hardcore</field>
+        </record>
+        <record id="genero2" model="musictracker.genero">
+            <field name="name">Electronicore</field>
+        </record>
+        <record id="genero3" model="musictracker.genero">
+            <field name="name">Rock alternativo</field>
+        </record>
+        <record id="genero4" model="musictracker.genero">
+            <field name="name">Metalcore</field>
+        </record>
+        <record id="genero5" model="musictracker.genero">
+            <field name="name">Indie Rock</field>
+        </record>
+        <record id="genero6" model="musictracker.genero">
+            <field name="name">Art Rock</field>
+        </record>
+        <record id="genero7" model="musictracker.genero">
+            <field name="name">Power Pop</field>
+        </record>
+        <record id="genero8" model="musictracker.genero">
+            <field name="name">Indietronica</field>
+        </record>
+
+        <!--Tags-->
+        <record id="tag1" model="musictracker.tag">
+            <field name="name">Vocalista masculino</field>
+        </record>
+        <record id="tag2" model="musictracker.tag">
+            <field name="name">Energético</field>
+        </record>
+        <record id="tag3" model="musictracker.tag">
+            <field name="name">Introspectivo</field>
+        </record>
+        <record id="tag4" model="musictracker.tag">
+            <field name="name">Agresivo</field>
+        </record>
+        <record id="tag5" model="musictracker.tag">
+            <field name="name">Vocalista no binario</field>
+        </record>
+        <record id="tag6" model="musictracker.tag">
+            <field name="name">Peculiar</field>
+        </record>
+        <record id="tag7" model="musictracker.tag">
+            <field name="name">Melódico</field>
+        </record>
+
+        <!--Artistas-->
+        <record id="artista1" model="musictracker.artista">
+            <field name="name">Enter Shikari</field>
+            <field name="ubicacion">St. Albans, Hertfordshire, Reino Unido</field>
+            <field name="fecha_formacion">2003-01-01</field>
+            <field name="fecha_separacion">2020-06-14</field> <!--este grupo no se ha separado, es por probar que funciona bien-->
+            <field name="foto" type="base64" file="musictracker/static/dummy_images/enter_shikari.png"/>
+            <field name="generos" eval="[(6,0,[ref('genero1'),ref('genero2'),ref('genero3'),ref('genero4')])]"/>
+        </record>
+        <record id="artista2" model="musictracker.artista">
+            <field name="name">glass beach</field>
+            <field name="ubicacion">Seattle, WA, E.E.U.U.</field>
+            <field name="fecha_formacion">2016-01-01</field>
+            <field name="foto" type="base64" file="musictracker/static/dummy_images/glass_beach.png"/>
+            <field name="generos" eval="[(6,0,[ref('genero5'),ref('genero6'),ref('genero7'),ref('genero8')])]"/>
+        </record>
+
+        <!--Publicaciones-->
+        <record id="publicacion1" model="musictracker.publicacion">
+            <field name="name">A Flash Flood of Colour</field>
+            <field name="artista" ref="artista1"/>
+            <field name="tipo">a</field> <!--Álbum-->
+            <field name="fecha_publicacion">2012-06-16</field>
+            <field name="generos" eval="[(6,0,[ref('genero1'),ref('genero2'),ref('genero4')])]"/>
+            <field name="tags" eval="[(6,0,[ref('tag1'),ref('tag2'),ref('tag3')])]"/>
+            <field name="foto" type="base64" file="musictracker/static/dummy_images/flash_flood_of_colour.jpg"/>
+            <field name="url_spotify"><![CDATA[
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/5y9EcqMddyxsauruce3bm2?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            ]]></field>
+        </record>
+        <record id="publicacion2" model="musictracker.publicacion">
+            <field name="name">Rat Race</field>
+            <field name="artista" ref="artista1"/>
+            <field name="tipo">e</field> <!--EP-->
+            <field name="fecha_publicacion">2013-11-03</field>
+            <field name="generos" eval="[(6,0,[ref('genero1'),ref('genero2')])]"/>
+            <field name="tags" eval="[(6,0,[ref('tag1'),ref('tag2'),ref('tag4')])]"/>
+            <field name="foto" type="base64" file="musictracker/static/dummy_images/rat_race.jpg"/>
+            <field name="url_spotify"><![CDATA[
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/74inBSTf7RsIV0L4m63KBu?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            ]]></field>
+        </record>
+        <record id="publicacion3" model="musictracker.publicacion">
+            <field name="name">the first glass beach album</field>
+            <field name="artista" ref="artista2"/>
+            <field name="tipo">a</field>
+            <field name="fecha_publicacion">2019-05-18</field>
+            <field name="generos" eval="[(6,0,[ref('genero5'),ref('genero6'),ref('genero7'),ref('genero8')])]"/>
+            <field name="tags" eval="[(6,0,[ref('tag5'),ref('tag6'),ref('tag7'),ref('tag3')])]"/>
+            <field name="foto" type="base64" file="musictracker/static/dummy_images/first_glass_beach_album.jpg"/>
+            <field name="url_spotify"><![CDATA[
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/5GOoswCqZQiq9gbjSHkzMq?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            ]]></field>
+        </record>
+        <record id="publicacion4" model="musictracker.publicacion">
+            <field name="name">Alchemist Rats Beg Bashful</field>
+            <field name="artista" ref="artista2"/>
+            <field name="tipo">r</field> <!--Álbum remix-->
+            <field name="fecha_publicacion">2021-03-05</field>
+            <field name="generos" eval="[(6,0,[ref('genero5'),ref('genero7'),ref('genero8')])]"/>
+            <field name="tags" eval="[(6,0,[ref('tag5'),ref('tag3')])]"/>
+            <field name="foto" type="base64" file="musictracker/static/dummy_images/glass_beach_remix.jpg"/>
+            <field name="url_spotify"><![CDATA[
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/0qIdIwJ9CfAXpdRWrX4sU2?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            ]]></field>
+        </record>
+
+    <!--Ratings-->
+        <record id="rating1" model="musictracker.rating">
+            <field name="name">Rating 1</field>
+            <field name="usuario" ref="usuario1"/>
+            <field name="publicacion" ref="publicacion1"/>
+            <field name="rating">10</field>
+            <field name="review">Increíble uso de la electrónica</field>
+            <field name="fecha_rating">2024-02-16</field>
+        </record>
+        <record id="rating2" model="musictracker.rating">
+            <field name="name">Rating 2</field>
+            <field name="usuario" ref="usuario1"/>
+            <field name="publicacion" ref="publicacion2"/>
+            <field name="rating">9</field>
+            <field name="review">Apasionante</field>
+            <field name="fecha_rating">2024-02-26</field>
+        </record>
+        <record id="rating3" model="musictracker.rating">
+            <field name="name">Rating 3</field>
+            <field name="usuario" ref="usuario1"/>
+            <field name="publicacion" ref="publicacion3"/>
+            <field name="rating">10</field>
+            <field name="review">Músicos espectaculares</field>
+            <field name="fecha_rating">2024-02-16</field>
+        </record>
+        <record id="rating4" model="musictracker.rating">
+            <field name="name">Rating 4</field>
+            <field name="usuario" ref="usuario1"/>
+            <field name="publicacion" ref="publicacion4"/>
+            <field name="rating">5</field>
+            <field name="review">Un álbum remix no siempre pega fuerte</field>
+            <field name="fecha_rating">2024-02-26</field>
+        </record>
+        <record id="rating5" model="musictracker.rating">
+            <field name="name">Rating 5</field>
+            <field name="usuario" ref="usuario2"/>
+            <field name="publicacion" ref="publicacion1"/>
+            <field name="rating">8</field>
+            <field name="review">Muy curioso la verdad</field>
+            <field name="fecha_rating">2024-02-18</field>
+        </record>
+        <record id="rating6" model="musictracker.rating">
+            <field name="name">Rating 6</field>
+            <field name="usuario" ref="usuario2"/>
+            <field name="publicacion" ref="publicacion2"/>
+            <field name="rating">6</field>
+            <field name="review">En el álbum LP sonaban mejor</field>
+            <field name="fecha_rating">2024-02-24</field>
+        </record>
+        <record id="rating7" model="musictracker.rating">
+            <field name="name">Rating 7</field>
+            <field name="usuario" ref="usuario2"/>
+            <field name="publicacion" ref="publicacion3"/>
+            <field name="rating">7</field>
+            <field name="review">Muy emo para mi gusto pero está bien</field>
+            <field name="fecha_rating">2024-02-15</field>
+        </record>
+        <record id="rating8" model="musictracker.rating">
+            <field name="name">Rating 8</field>
+            <field name="usuario" ref="usuario2"/>
+            <field name="publicacion" ref="publicacion4"/>
+            <field name="rating">8</field>
+            <field name="review">Me gustan las reimaginaciones de los remixes</field>
+            <field name="fecha_rating">2024-02-28</field>
+        </record>
+
+        <!--Miembros-->
+        <record id="miembro1" model="musictracker.miembro">
+            <field name="name">Classic J</field>
+            <field name="nombre">J</field>
+            <field name="apellidos">McCledon</field>
+            <field name="artista" ref="artista2"/>
+            <field name="instrumento">voz, guitarra, teclado, sintetizador</field>
+        </record>
+        <record id="miembro2" model="musictracker.miembro">
+            <field name="name">William White</field>
+            <field name="nombre">William</field>
+            <field name="apellidos">White</field>
+            <field name="artista" ref="artista2"/>
+            <field name="instrumento">batería, coros</field>
+        </record>
+        <record id="miembro3" model="musictracker.miembro">
+            <field name="name">Jonas Newhouse</field>
+            <field name="nombre">Jonas</field>
+            <field name="apellidos">Newhouse</field>
+            <field name="artista" ref="artista2"/>
+            <field name="instrumento">bajo, coros</field>
+        </record>
+        <record id="miembro4" model="musictracker.miembro">
+            <field name="name">Layne Smith</field>
+            <field name="nombre">Layne</field>
+            <field name="apellidos">Smith</field>
+            <field name="fecha_inicio">2019-01-01</field>
+            <field name="artista" ref="artista2"/>
+            <field name="instrumento">guitarra</field>
+        </record>
+
+        <!--Canciones-->
+        <record id="cancion1" model="musictracker.cancion">
+            <field name="name">System...</field>
+            <field name="publicacion" ref="publicacion1"/>
+        </record>
+        <record id="cancion2" model="musictracker.cancion">
+            <field name="name">...Meltdown</field>
+            <field name="publicacion" ref="publicacion1"/>
+        </record>
+        <record id="cancion3" model="musictracker.cancion">
+            <field name="name">Sssnakepit</field>
+            <field name="publicacion" ref="publicacion1"/>
+        </record>
+        <record id="cancion4" model="musictracker.cancion">
+            <field name="name">Search Party</field>
+            <field name="publicacion" ref="publicacion1"/>
+        </record>
+        <record id="cancion5" model="musictracker.cancion">
+            <field name="name">Arguing with Thermometers</field>
+            <field name="publicacion" ref="publicacion1"/>
+        </record>
+        <record id="cancion6" model="musictracker.cancion">
+            <field name="name">Stalemate</field>
+            <field name="publicacion" ref="publicacion1"/>
+        </record>
+        <record id="cancion7" model="musictracker.cancion">
+            <field name="name">Ghandi Mate, Ghandi</field>
+            <field name="publicacion" ref="publicacion1"/>
+        </record>
+        <record id="cancion8" model="musictracker.cancion">
+            <field name="name">Warm Smiles Do Not Make You Welcome Here</field>
+            <field name="publicacion" ref="publicacion1"/>
+        </record>
+        <record id="cancion9" model="musictracker.cancion">
+            <field name="name">Pack of Thieves</field>
+            <field name="publicacion" ref="publicacion1"/>
+        </record>
+        <record id="cancion10" model="musictracker.cancion">
+            <field name="name">Hello Tyrannosaurus, Meet Tyrannicide</field>
+            <field name="publicacion" ref="publicacion1"/>
+        </record>
+        <record id="cancion11" model="musictracker.cancion">
+            <field name="name">Constellations</field>
+            <field name="publicacion" ref="publicacion1"/>
+        </record>
+    </data>
+</odoo>

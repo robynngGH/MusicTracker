@@ -3,6 +3,7 @@
 from odoo import models, fields, api
 from dateutil.relativedelta import *
 from datetime import date
+from odoo.exceptions import ValidationError
 import logging
 
 _logger = logging.getLogger(__name__)
@@ -113,9 +114,11 @@ class publicacion(models.Model):
 
     # restricciones
     # la fecha de publicación no puede ser anterior a la fecha de formación del artista
-    _sql_constraints = [
-        ('check_fecha_publicacion', 'CHECK(fecha_publicacion >= artista.fecha_formacion)', 'La fecha de publicación no puede ser anterior a la fecha de formación del artista.'),
-    ]
+    @api.constrains('fecha_publicacion', 'artista')
+    def _check_fecha_publicacion(self):
+        for publicacion in self:
+            if publicacion.artista and publicacion.fecha_publicacion < publicacion.artista.fecha_formacion:
+                raise ValidationError('La fecha de publicación no puede ser anterior a la fecha de formación del artista.')
 
             
 class artista(models.Model):

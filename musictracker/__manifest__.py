@@ -32,6 +32,7 @@
         'reports/report_miembros_artista.xml',
         'reports/report_publicaciones_artista.xml',
         'reports/report_canciones_publicacion.xml',
+        'data/data.xml',
     ],
     'qweb': [
         'static/src/xml/star_rating_widget.xml',
@@ -40,7 +41,7 @@
     'demo': [
         'demo/demo.xml',
     ],
-    # css de FontAwesome para el widget de ratings
+    # css de FontAwesome para el widget personalizado de ratings (no usado al final)
     'css': [
         'static/src/lib/fontawesome/css/all.css',
         'static/src/css/estilos_kanban.css',
